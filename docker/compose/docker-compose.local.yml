@@ -1,0 +1,39 @@
+version: '3.9'
+
+services:
+  # Mount a volume for "app" service so that it can read when changes to the code have
+  # been made. Expose "DEBUGPY_PORT" to allow breakpoints to be set during development.
+  app:
+    environment:
+      - ALLOWED_HOSTS=localhost,0.0.0.0,127.0.0.1
+      - DEBUGPY_PORT
+      - DJANGO_VITE_DEV_MODE
+      - DJANGO_VITE_DEV_SERVER_PORT
+    image: '${DOCKER_IMAGE_REPO}:dev'
+    build:
+      target: local
+      args:
+        - REQUIREMENTS_FILE=dev.txt
+    ports:
+      - '${DEBUGPY_PORT}:${DEBUGPY_PORT}'
+    links:
+      - vite:vite
+    volumes:
+      - '../../django_vue_experiments:/app/django_vue_experiments'
+
+  # The "vite" service is responsible for static asset compilation.
+  vite:
+    environment:
+      - DJANGO_VITE_DEV_SERVER_PORT
+    image: '${DOCKER_IMAGE_REPO}-vite:latest'
+    build:
+      context: ../..
+      dockerfile: ./docker/images/vite/vite.Dockerfile
+    tty: true
+    ports:
+      - '${DJANGO_VITE_DEV_SERVER_PORT}:${DJANGO_VITE_DEV_SERVER_PORT}'
+    volumes:
+      - '../../vite.config.js:/app/vite.config.js'
+      - '../../tailwind.config.js:/app/tailwind.config.js'
+      - '../../tsconfig.json:/app/tsconfig.json'
+      - '../../django_vue_experiments:/app/django_vue_experiments'

@@ -1,0 +1,36 @@
+[tool.poetry]
+name = "django-vue-experiments"
+version = "0.1.0"
+description = ""
+authors = ["Niicck <niicck@users.noreply.github.com>"]
+readme = "README.md"
+packages = [{include = "django_vue_experiments"}]
+
+[tool.poetry.dependencies]
+python = ">=3.11.5"
+django = "^4.2.7"
+django-stubs-ext = "^4.2.2"
+django-vite = {git = "https://github.com/Niicck/django-vite.git", rev = "multi-config-2023-apps"}
+django-widget-tweaks = "^1.4.12"
+dj-database-url = "^2.1.0"
+python-decouple = "^3.8"
+gunicorn = "^21.2.0"
+django-extensions = "^3.2.1"
+psycopg2 = "^2.9.7"
+ipython = "^8.4"
+whitenoise = {extras = ["brotli"], version = "^6.5.0"}
+
+[tool.poetry.group.dev.dependencies]
+debugpy = "^1.6.5"
+
+[tool.poetry.group.test.dependencies]
+pytest = "^7.2.0"
+pytest-django = "^4.5"
+factory-boy = "^3.2.1"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE="django_vue_experiments.settings"

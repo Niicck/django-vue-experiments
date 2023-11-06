@@ -1,0 +1,85 @@
+repos:
+  - repo: https://github.com/psf/black
+    rev: 23.1.0
+    hooks:
+      - id: black
+        require_serial: true
+
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.3.0
+    hooks:
+      - id: trailing-whitespace
+      - id: check-added-large-files
+        exclude: tests/fixtures/books.py
+      - id: check-yaml
+      - id: check-toml
+      - id: end-of-file-fixer
+
+  - repo: https://github.com/PyCQA/flake8
+    rev: 6.0.0
+    hooks:
+      - id: flake8
+        additional_dependencies:
+          - flake8-bandit
+          - flake8-bugbear
+          - pep8-naming
+          - flake8-django
+        require_serial: true
+
+  - repo: https://github.com/PyCQA/isort
+    rev: 5.12.0
+    hooks:
+      - id: isort
+        require_serial: true
+        args: ['--filter-files']
+
+  - repo: https://github.com/asottile/pyupgrade
+    rev: v3.3.1
+    hooks:
+      - id: pyupgrade
+        args: [--py37-plus]
+
+  - repo: https://github.com/rtts/djhtml
+    rev: v2.0.0
+    hooks:
+      - id: djhtml
+
+  - repo: https://github.com/pre-commit/mirrors-eslint
+    rev: v8.34.0
+    hooks:
+      - id: eslint
+        types: [file]
+        files: \.(js|jsx|ts|tsx|vue)$
+        args: ['--fix']
+        additional_dependencies:
+          - eslint@v8.34.0
+          - eslint-config-prettier@v8.6.0
+          - '@typescript-eslint/parser@v5.53.0'
+          - '@typescript-eslint/eslint-plugin@v5.53.0'
+          - eslint-plugin-vue@v9.9.0
+          - vue-eslint-parser@9.1.0
+
+  - repo: local
+    hooks:
+      - id: typescript
+        require_serial: true
+        language: system
+        name: typescript
+        entry: npm run check
+        types: [file]
+        types_or: [ts, tsx, vue]
+
+  - repo: https://github.com/thibaudcolas/pre-commit-stylelint
+    rev: v15.2.0
+    hooks:
+      - id: stylelint
+        additional_dependencies:
+          - stylelint@15.2.0
+          - stylelint-config-standard@30.0.1
+          - stylelint-config-rational-order@0.1.2
+
+  - repo: https://github.com/pre-commit/mirrors-prettier
+    rev: v2.7.1
+    hooks:
+      - id: prettier
+        types_or: [css, scss, json, yaml, javascript, jsx, ts, tsx, vue]
