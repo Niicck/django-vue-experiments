@@ -42,7 +42,9 @@ export default defineConfig((mode) => {
       target: 'es2015',
       outDir: resolve(OUTPUT_DIR),
       rollupOptions: {
-        input: {},
+        input: {
+          css: join(INPUT_DIR, '/css/main.css.js'),
+        },
         output: {
           chunkFileNames: undefined,
         },

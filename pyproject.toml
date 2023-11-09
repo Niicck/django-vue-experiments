@@ -19,6 +19,7 @@ django-extensions = "^3.2.1"
 psycopg2 = "^2.9.7"
 ipython = "^8.4"
 whitenoise = {extras = ["brotli"], version = "^6.5.0"}
+django-csp = "^3.7"
 
 [tool.poetry.group.dev.dependencies]
 debugpy = "^1.6.5"

@@ -43,15 +43,23 @@ SESSION_COOKIE_SECURE = True
 # Application definition
 
 INSTALLED_APPS = [
+    # Django
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    # Third Party
+    "django_vite",
+    "django_extensions",
+    # Local
+    "django_vue_experiments",
+    "django_vue_experiments.experiments",
 ]
 
 MIDDLEWARE = [
+    "django_vue_experiments.middleware.CSPFrameAncestorsMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
@@ -201,3 +209,11 @@ DJANGO_VITE = {
         "dev_server_port": config("DJANGO_VITE_DEV_SERVER_PORT"),
     },
 }
+
+
+# ---------------------
+# Custom CSPFrameAncestorsMiddleware
+# ---------------------
+EXTRA_CSP_FRAME_ANCESTORS = config(
+    "EXTRA_CSP_FRAME_ANCESTORS", default="http://localhost:4321,", cast=Csv()
+)
