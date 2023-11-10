@@ -1,11 +1,16 @@
 {% extends "_base.html" %}
 
-
 {% block content %}
-    <h1>Experiements with Django and Vue</h1>
+    <h1 class="text-3xl font-bold leading-tight tracking-tight mb-5">Experiments with Django and Vue</h1>
 
-    <ul>
-        <li><em>Experiment 0:</em><a href={% url 'exp0' %}></li> Loading JavaScript with script tags</a>
+    <ul class="space-y-3">
+        {% for view in experiment_view_classes %}
+            <li>
+                <span>Experiment {{view.number}}: </span>
+                <a href={% url view.path_name %} class="text-blue-600 hover:text-blue-800 underline">
+                    {{ view.description }}
+                </a>
+            </li>
+        {% endfor %}
     </ul>
-
 {% endblock content %}

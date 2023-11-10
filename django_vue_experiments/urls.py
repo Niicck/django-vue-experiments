@@ -18,8 +18,17 @@ from django.contrib import admin
 from django.urls import include, path
 from django.views.generic import TemplateView
 
+from .experiments.views import experiment_view_classes
+
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("", TemplateView.as_view(template_name="home.html"), name="index"),
+    path(
+        "",
+        TemplateView.as_view(
+            template_name="home.html",
+            extra_context={"experiment_view_classes": experiment_view_classes},
+        ),
+        name="index",
+    ),
     path("experiments/", include("django_vue_experiments.experiments.urls")),
 ]

@@ -1,0 +1,25 @@
+{% extends "_base.html" %}
+
+{% block title %}Experiment {{ number }}{% endblock title %}
+
+{% block content %}
+    {% if embed or not embed %}
+        <div class="mb-5">
+            <h1 class="text-3xl font-bold leading-tight tracking-tight">
+                Experiment {{ number }}
+            </h1>
+            <h2>{{ description }}</h2>
+        </div>
+    {% endif %}
+
+    {% block experiment %}
+    {% endblock experiment %}
+
+    <footer class="mt-5">
+        {% if not embed %}
+            <a class="text-blue-600 hover:text-blue-800 underline" href={% url "index" %}>&lt;&lt; See all experiments</a>
+        {% else %}
+            <a class="text-blue-600 hover:text-blue-800 underline" target="_blank" href={% url view.path_name %}>Open in new window</a>
+        {% endif %}
+    </footer>
+{% endblock content %}

@@ -1,22 +1,11 @@
-{% extends "_base.html" %}
+{% extends "_experiment.html" %}
 
 {% load django_vite %}
 
-{% block title %}Experiment 1 :: Basic{% endblock title %}
-
-{% block content %}
+{% block experiment %}
     {% vite_asset 'js/apps/001_basic.js' %}
 
-    <div class="flex flex-col justify-start sm:max-w-4xl w-full mx-auto px-8 lg:px-0 space-y-10">
-        <div class="max-w-7xl">
-            <h1 class="text-3xl font-bold leading-tight tracking-tight">
-                Experiment 1
-            </h1>
-            <p>Inject a vue app into a Django template.</p>
-        </div>
-
-        <div id="vue-experiment-1">
-            <basic-block></basic-block>
-        </div>
+    <div id="vue-experiment-1">
+        <demo-counter></demo-counter>
     </div>
-{% endblock content %}
+{% endblock experiment %}

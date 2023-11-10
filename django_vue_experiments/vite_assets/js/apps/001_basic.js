@@ -1,12 +1,12 @@
 import 'vite/modulepreload-polyfill'; // required for vite entrypoints
 
 import { createApp, defineComponent } from 'vue';
-import BasicBlock from '@/js/components/BasicBlock.vue';
+import DemoCounter from '@/js/components/DemoCounter.vue';
 
 const RootComponent = defineComponent({
   delimiters: ['[[', ']]'],
   components: {
-    'basic-block': BasicBlock,
+    demoCounter: DemoCounter,
   },
 });
 
