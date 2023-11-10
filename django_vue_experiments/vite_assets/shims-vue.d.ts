@@ -3,4 +3,8 @@
  * Fixes:
  * error TS2307: Cannot find module '@/vue/Autocomplete.vue' or its corresponding type declarations.
  **/
-declare module '*.vue';
+declare module '*.vue' {
+  import type { DefineComponent } from 'vue';
+  const component: DefineComponent<{}, {}, any>;
+  export default component;
+}

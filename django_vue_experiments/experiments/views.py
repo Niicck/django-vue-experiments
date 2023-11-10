@@ -1,11 +1,13 @@
 from typing import Type
 
+from django.contrib import messages
 from django.core.exceptions import ImproperlyConfigured
+from django.shortcuts import redirect
 from django.views.generic import TemplateView
 
 
 class ExperimentView(TemplateView):
-    number: int
+    number: int | str
     description: str
 
     def get_template_names(self):
@@ -29,8 +31,8 @@ class ExperimentView(TemplateView):
 
 class Experiment0(ExperimentView):
     number = 0
-    description = "Load JavaScript with a script tag"
-    template_name = "000_script_tag.html"
+    description = "Load JavaScript the old school way"
+    template_name = "000_vanilla_js.html"
 
 
 class Experiment1(ExperimentView):
@@ -39,7 +41,28 @@ class Experiment1(ExperimentView):
     template_name = "001_vue_mvp.html"
 
 
+class SuccessMessageExperimentView(ExperimentView):
+    def post(self, request, *args, **kwargs):
+        messages.success(self.request, "Great Job! You pressed a button.")
+        return redirect(self.path_name())
+
+
+class Experiment2a(SuccessMessageExperimentView):
+    number = "2a"
+    description = "Default Django Messages"
+    template_name = "002a_default_messages.html"
+
+
+class Experiment2b(SuccessMessageExperimentView):
+    number = "2b"
+    description = "Vuetify Django Messages"
+    template_name = "002b_vuetify_messages.html"
+
+
+# Add your view to this list to automatically create homepage links and url paths.
 experiment_view_classes: list[Type[ExperimentView]] = [
     Experiment0,
     Experiment1,
+    Experiment2a,
+    Experiment2b,
 ]

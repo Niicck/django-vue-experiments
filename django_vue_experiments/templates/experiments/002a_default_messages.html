@@ -1,0 +1,25 @@
+{% extends "_experiment.html" %}
+
+{% load static %}
+
+{% block header %}
+    {% if messages %}
+        <ul class="messages list-none">
+            {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }} bg-lime-200 p-1 rounded-md"{% endif %}>Success: {{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endblock header%}
+
+{% block experiment %}
+    <form method="POST">
+        {% csrf_token %}
+        <button
+            type="submit"
+            class="text-white max-w-96 font-bold py-2 px-4 button rounded-l bg-green-500 hover:bg-green-700"
+        >
+            Click me to display a message.
+        </button>
+    </form>
+{% endblock experiment %}

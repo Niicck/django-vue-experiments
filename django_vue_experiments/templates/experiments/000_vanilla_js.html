@@ -1,0 +1,38 @@
+{% extends "_experiment.html" %}
+
+{% load static %}
+
+{% block experiment %}
+    <script src="{% static 'js/vendor/jquery-3.6.0.min.js' %}"></script>
+    <script src="{% static 'js/000_vanilla_js.js' %}"></script>
+
+    <div
+        class="relative flex items-center space-x-3 rounded-lg border-4 border-amber-600 bg-yellow-100 px-6 py-5 shadow-sm w-fit"
+    >
+        <div class="my-5 text-base leading-7 space-y-3 flex flex-col">
+            <p class="pb-5">
+                This counter was made with jQuery and vanilla JavaScript.
+            </p>
+            <div class="flex flex-row mx-auto">
+                <button
+                    class="text-white font-bold py-2 px-4 button rounded-l bg-red-500 hover:bg-red-700"
+                    id="decrement"
+                >
+                    -
+                </button>
+                <div
+                    class="px-4 py-2 text-lg font-semibold text-gray-700"
+                    id="counter"
+                >
+                    0
+                </div>
+                <button
+                    class="text-white font-bold py-2 px-4 button rounded-r bg-green-500 hover:bg-green-700"
+                    id="increment"
+                >
+                    +
+                </button>
+            </div>
+        </div>
+    </div>
+{% endblock experiment %}

@@ -6,8 +6,7 @@
     "dev": "cross-env TAILWIND_MODE=watch vite -d",
     "build": "cross-env TAILWIND_MODE=build vite build",
     "preview": "vite preview",
-    "check": "tsc --noEmit",
-    "check-vue": "vue-tsc --noEmit"
+    "check": "vue-tsc --noEmit"
   },
   "dependencies": {
     "@headlessui/vue": "^1.7.12",
@@ -15,11 +14,12 @@
     "@vuepic/vue-datepicker": "^6.0.2",
     "axios": "^1.3.4",
     "lodash": "^4.17.21",
-    "vue": "^3.2.47"
+    "vue": "^3.2.47",
+    "vuetify": "^3.4.0"
   },
   "devDependencies": {
     "@babel/types": "^7.23.3",
-    "@mdi/font": "^7.2.96",
+    "@mdi/js": "^7.3.67",
     "@tailwindcss/aspect-ratio": "^0.4.2",
     "@tailwindcss/forms": "^0.5.3",
     "@tailwindcss/line-clamp": "^0.4.2",
@@ -62,7 +62,12 @@
     },
     "rules": {
       "vue/script-setup-uses-vars": "error"
-    }
+    },
+    "ignorePatterns": [
+      "**/shims-vue.d.ts",
+      "**/static/js/000_vanilla_js.js",
+      "**/vendor/*.js"
+    ]
   },
   "stylelint": {
     "extends": [

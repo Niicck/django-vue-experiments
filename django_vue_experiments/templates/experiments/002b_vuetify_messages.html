@@ -1,0 +1,45 @@
+{% extends "_experiment.html" %}
+
+{% load django_vite %}
+
+{% block header %}
+    <div id="vue-experiment-2b">
+        {% if messages %}
+            <ul class="list-none">
+                {% for message in messages %}
+                    <li>
+                        <transition
+                            enter-active-class="transform ease-out duration-300 transition"
+                            enter-from-class="translate-y-2 opacity-0 sm:translate-y-0 sm:translate-x-2"
+                            enter-to-class="translate-y-0 opacity-100 sm:translate-x-0"
+                            leave-active-class="transition ease-in duration-100"
+                            leave-from-class="opacity-100"
+                            leave-to-class="opacity-0"
+                        >
+                            <v-alert
+                                :closable="true"
+                                color="success"
+                                icon="$success"
+                                title="Success"
+                                text="{{ message }}"
+                            ></v-alert>
+                        </transition>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+{% endblock header%}
+
+{% block experiment %}
+    {% vite_asset 'js/apps/002b_new_messages.ts' %}
+    <form method="POST">
+        {% csrf_token %}
+        <button
+            type="submit"
+            class="text-white max-w-96 font-bold py-2 px-4 button rounded-l bg-green-500 hover:bg-green-700"
+        >
+            Click me to display a message.
+        </button>
+    </form>
+{% endblock experiment %}

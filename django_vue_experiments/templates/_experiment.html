@@ -3,23 +3,27 @@
 {% block title %}Experiment {{ number }}{% endblock title %}
 
 {% block content %}
-    {% if embed or not embed %}
-        <div class="mb-5">
-            <h1 class="text-3xl font-bold leading-tight tracking-tight">
-                Experiment {{ number }}
-            </h1>
-            <h2>{{ description }}</h2>
-        </div>
-    {% endif %}
+    {% block header %}
+    {% endblock header%}
+
+    <div class="mb-5">
+        <h1 class="text-3xl font-bold leading-tight tracking-tight">
+            Experiment {{ number }}
+        </h1>
+        <h2>{{ description }}</h2>
+    </div>
 
     {% block experiment %}
     {% endblock experiment %}
 
-    <footer class="mt-5">
+    <footer class="mt-5 flex flex-col">
         {% if not embed %}
-            <a class="text-blue-600 hover:text-blue-800 underline" href={% url "index" %}>&lt;&lt; See all experiments</a>
+            <a class="text-blue-600 hover:text-blue-800 underline w-fit" href={% url "index" %}>&lt;&lt; See all experiments</a>
         {% else %}
-            <a class="text-blue-600 hover:text-blue-800 underline" target="_blank" href={% url view.path_name %}>Open in new window</a>
+            <a class="text-blue-600 hover:text-blue-800 underline w-fit" target="_blank" href={% url view.path_name %}>Open in new window</a>
         {% endif %}
+        {% with "https://github.com/Niicck/django-vue-experiments/tree/main/django_vue_experiments/templates/experiments/"|add:view.template_name as source_code_url %}
+            <a class="text-blue-600 hover:text-blue-800 underline w-fit" target="_blank" href={{ source_code_url }} >See source code</a>
+        {% endwith %}
     </footer>
 {% endblock content %}

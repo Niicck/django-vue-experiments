@@ -4,7 +4,7 @@
   >
     <div class="my-5 text-base leading-7 space-y-3 flex flex-col">
       <p class="pb-5">
-        This is a Vue component that has been loaded into a Django Template!
+        This counter was made with a Vue component loaded into a Django Template.
       </p>
       <div class="flex flex-row mx-auto">
         <button class="button rounded-l bg-red-500 hover:bg-red-700" @click="decrement">
@@ -22,7 +22,7 @@
   </div>
 </template>
 
-<script lang="ts" setup>
+<script setup lang="ts">
 import { ref } from 'vue';
 const count = ref(0);
 

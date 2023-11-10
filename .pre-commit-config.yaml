@@ -67,17 +67,7 @@ repos:
         name: typescript
         entry: npm run check
         types: [file]
-        types_or: [ts, tsx]
-
-  - repo: local
-    hooks:
-      - id: vue-typescript
-        require_serial: true
-        language: system
-        name: vue-typescript
-        entry: npm run check-vue
-        types: [file]
-        types_or: [vue]
+        types_or: [ts, tsx, vue]
 
   - repo: https://github.com/thibaudcolas/pre-commit-stylelint
     rev: v15.2.0
