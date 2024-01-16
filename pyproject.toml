@@ -10,7 +10,6 @@ packages = [{include = "django_vue_experiments"}]
 python = ">=3.11.5"
 django = "^4.2.7"
 django-stubs-ext = "^4.2.2"
-django-vite = {git = "https://github.com/Niicck/django-vite.git", rev = "multi-config-2023-apps"}
 django-widget-tweaks = "^1.4.12"
 dj-database-url = "^2.1.0"
 python-decouple = "^3.8"
@@ -20,6 +19,7 @@ psycopg2 = "^2.9.7"
 ipython = "^8.4"
 whitenoise = {extras = ["brotli"], version = "^6.5.0"}
 django-csp = "^3.7"
+django-vite = "^3.0.2"
 
 [tool.poetry.group.dev.dependencies]
 debugpy = "^1.6.5"

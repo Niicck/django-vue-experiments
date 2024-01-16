@@ -59,10 +59,24 @@ class Experiment2b(SuccessMessageExperimentView):
     template_name = "002b_vuetify_messages.html"
 
 
+class React(ExperimentView):
+    number = "react"
+    description = "React"
+    template_name = "react.html"
+
+
+class Hello(ExperimentView):
+    number = "hello"
+    description = "Hello!"
+    template_name = "hello.html"
+
+
 # Add your view to this list to automatically create homepage links and url paths.
 experiment_view_classes: list[Type[ExperimentView]] = [
     Experiment0,
     Experiment1,
     Experiment2a,
     Experiment2b,
+    React,
+    Hello,
 ]

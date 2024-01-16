@@ -1,9 +1,9 @@
 <template>
   <div
-    class="relative flex items-center space-x-3 rounded-lg border-4 border-amber-600 bg-yellow-100 px-6 py-5 shadow-sm w-fit"
+    class="relative flex items-center justify-center space-x-3 rounded-lg border-4 border-amber-600 bg-yellow-100 px-6 py-5 shadow-sm max-w-lg"
   >
     <div class="my-5 text-base leading-7 space-y-3 flex flex-col">
-      <p class="pb-5">
+      <p class="pb-5 text-center">
         This counter was made with a Vue component loaded into a Django Template.
       </p>
       <div class="flex flex-row mx-auto">
