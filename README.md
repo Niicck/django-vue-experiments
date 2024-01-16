@@ -1,6 +1,6 @@
 # django-vue-experiments
 
-A collection of experiments for using Vue within Django.
+A collection of experiments for using Django with Vue.
 
 You can try them yourself at: [TODO](#TODO)
 And you can read about them here: [TODO](#TODO)
