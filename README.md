@@ -20,7 +20,7 @@ Within `django_vue_experiments/experiments/views.py`:
 3. Start docker containers
   - `make docker-up`
 
-## Deployment
+## Build for production
 
 1. Update the `__version__` in `django_vue_experiments/__init__.py`.
 2. Build the production docker image
@@ -28,7 +28,3 @@ Within `django_vue_experiments/experiments/views.py`:
   - Test it locally: `make docker-up-production`
 3. Push to docker repo:
    - Ex: `docker push niicck/django_vue_experiments:latest`
-4. Pull from docker repo on your deployment server:
-  - `docker pull niicck/django_vue_experiments:latest`
-  - If running on dokku, rebuild the app:
-    - `dokku ps:rebuild django-vue-experiments`
