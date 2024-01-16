@@ -205,10 +205,14 @@ WHITENOISE_IMMUTABLE_FILE_TEST = immutable_file_test
 # ---------------------
 DJANGO_VITE = {
     "default": {
-        "dev_mode": config("DJANGO_VITE_DEV_MODE"),
-        "dev_server_port": config("DJANGO_VITE_DEV_SERVER_PORT"),
+        "dev_mode": config("DJANGO_VITE_DEV_MODE", default=False, cast=bool),
+        "dev_server_port": config("DJANGO_VITE_DEV_SERVER_PORT", default="5173"),
     },
 }
+
+# Set static_url_prefix when dev_mode is False
+if not DJANGO_VITE["default"]["dev_mode"]:
+    DJANGO_VITE["default"]["static_url_prefix"] = "django_vue_experiments/vite"
 
 
 # ---------------------

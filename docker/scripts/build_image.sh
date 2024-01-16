@@ -52,9 +52,8 @@ case $BUILD_TARGET in
             --progress=plain \
             .
 
-        # Add additional tag for specific version
-        DOCKER_IMAGE_TAG_VERSIONED="v${VERSION}"
-        docker tag $DOCKER_IMAGE_REPO:$DOCKER_IMAGE_TAG $DOCKER_IMAGE_REPO:$DOCKER_IMAGE_TAG_VERSIONED
+        # Add latest tag
+        docker tag $DOCKER_IMAGE_REPO:$DOCKER_IMAGE_TAG $DOCKER_IMAGE_REPO:latest
         ;;
     *)
         echo "Invalid environment specified. Use local, staging, or production."

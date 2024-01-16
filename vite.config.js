@@ -44,6 +44,8 @@ export default defineConfig((mode) => {
       rollupOptions: {
         input: {
           css: join(INPUT_DIR, '/css/main.css.js'),
+          exp001: join(INPUT_DIR, '/js/apps/001_vue_mvp.ts'),
+          exp002b: join(INPUT_DIR, '/js/apps/002b_new_messages.ts'),
         },
         output: {
           chunkFileNames: undefined,

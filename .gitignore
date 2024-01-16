@@ -254,3 +254,4 @@ tsconfig.tsbuildinfo
 # compiled assets
 staticfiles
 docker/build/requirements/**
+django_vue_experiments/vite_assets_dist/**

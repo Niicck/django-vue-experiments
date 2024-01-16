@@ -15,23 +15,20 @@ Within `django_vue_experiments/experiments/views.py`:
 
 1. Create a .env file.
    - `make .env`
-2. Prepare poetry requirements for docker image
-  - `make dev-requirements`
-3. Build docker containers for local development
+2. Build docker containers for local development
   - `make build-local`
-4. Start docker containers
+3. Start docker containers
   - `make docker-up`
 
 ## Deployment
 
-1. Prepare poetry requirements for production docker image
-  - `make production-requirements`
+1. Update the `__version__` in `django_vue_experiments/__init__.py`.
 2. Build the production docker image
   - `make build-production`
   - Test it locally: `make docker-up-production`
 3. Push to docker repo:
-   - Ex: `docker push niicck/django_vue_experiments-production:latest`
+   - Ex: `docker push niicck/django_vue_experiments:latest`
 4. Pull from docker repo on your deployment server:
-  - `docker pull niicck/django_vue_experiments-production:latest`
+  - `docker pull niicck/django_vue_experiments:latest`
   - If running on dokku, rebuild the app:
     - `dokku ps:rebuild django-vue-experiments`
