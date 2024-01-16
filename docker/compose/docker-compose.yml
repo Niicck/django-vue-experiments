@@ -1,33 +1,27 @@
 version: '3.9'
 
 services:
-  db:
-    environment:
-      - POSTGRES_DB
-      - POSTGRES_USER
-      - POSTGRES_PASSWORD
-    image: postgres:14.1
-    restart: unless-stopped
-    ports:
-      - '${POSTGRES_PORT}:${POSTGRES_PORT}'
-    command: -p ${POSTGRES_PORT}
-    healthcheck:
-      test: ['CMD-SHELL', 'pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}']
-      interval: 30s
-      timeout: 30s
-      retries: 3
-      start_period: 5s
+  # db:
+  #   environment:
+  #     - POSTGRES_DB
+  #     - POSTGRES_USER
+  #     - POSTGRES_PASSWORD
+  #   image: postgres:14.1
+  #   restart: unless-stopped
+  #   ports:
+  #     - '${POSTGRES_PORT}:${POSTGRES_PORT}'
+  #   command: -p ${POSTGRES_PORT}
+  #   healthcheck:
+  #     test: ['CMD-SHELL', 'pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}']
+  #     interval: 30s
+  #     timeout: 30s
+  #     retries: 3
+  #     start_period: 5s
 
   app:
     environment:
       - PORT
       - HOST
-      - DATABASE_ENGINE=django.db.backends.postgresql
-      - DATABASE_NAME=${POSTGRES_DB}
-      - DATABASE_USER=${POSTGRES_USER}
-      - DATABASE_PASSWORD=${POSTGRES_PASSWORD}
-      - DATABASE_HOST=${POSTGRES_HOST}
-      - DATABASE_PORT=${POSTGRES_PORT}
       - DEBUG
       - SECRET_KEY
     build:
@@ -37,7 +31,7 @@ services:
         APP_HOME: /app
     ports:
       - '${PORT}:${PORT}'
-    depends_on:
-      - db
-    links:
-      - db:postgres
+    # depends_on:
+    #   - db
+    # links:
+    #   - db:postgres
