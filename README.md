@@ -2,8 +2,9 @@
 
 A collection of experiments for using Django with Vue.
 
-You can try them yourself at: [TODO](#TODO)
-And you can read about them here: [TODO](#TODO)
+You can try them yourself at: [django-vue-experiments.supergood.cloud](https://django-vue-experiments.supergood.cloud/)
+
+And you can read about them on: [supergood.site](https://supergood.site/tech/introduction-to-vue-with-django/)
 
 ## Add New experiments
 
