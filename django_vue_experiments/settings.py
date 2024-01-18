@@ -35,9 +35,20 @@ DEBUG = config("DEBUG", default=False, cast=bool)
 # Deployment configs
 
 ALLOWED_HOSTS = config("ALLOWED_HOSTS", default="0.0.0.0,", cast=Csv())
+
+# iframe support
+
 CSRF_TRUSTED_ORIGINS = config("CSRF_TRUSTED_ORIGINS", default="", cast=Csv())
 CSRF_COOKIE_SECURE = True
 SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SAMESITE = "None"
+SESSION_COOKIE_SAMESITE = "None"
+
+EXTRA_CSP_FRAME_ANCESTORS = config(
+    "EXTRA_CSP_FRAME_ANCESTORS", default="http://localhost:4321,", cast=Csv()
+)
+
+CORS_ALLOWED_ORIGINS = config("CORS_ALLOWED_ORIGINS", default=",", cast=Csv())
 
 
 # Application definition
@@ -53,6 +64,7 @@ INSTALLED_APPS = [
     # Third Party
     "django_vite",
     "django_extensions",
+    "corsheaders",
     # Local
     "django_vue_experiments",
     "django_vue_experiments.experiments",
@@ -60,6 +72,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     "django_vue_experiments.middleware.CSPFrameAncestorsMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
@@ -67,7 +80,6 @@ MIDDLEWARE = [
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
-    "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
 ROOT_URLCONF = "django_vue_experiments.urls"
@@ -213,11 +225,3 @@ DJANGO_VITE = {
 # Set static_url_prefix when dev_mode is False
 if not DJANGO_VITE["default"]["dev_mode"]:
     DJANGO_VITE["default"]["static_url_prefix"] = "django_vue_experiments/vite"
-
-
-# ---------------------
-# Custom CSPFrameAncestorsMiddleware
-# ---------------------
-EXTRA_CSP_FRAME_ANCESTORS = config(
-    "EXTRA_CSP_FRAME_ANCESTORS", default="http://localhost:4321,", cast=Csv()
-)

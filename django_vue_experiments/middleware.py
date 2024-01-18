@@ -27,7 +27,7 @@ class CSPFrameAncestorsMiddleware(MiddlewareMixin):
 
         extra_frame_ancestors = getattr(settings, "EXTRA_CSP_FRAME_ANCESTORS", [])
         csp_frame_ancestors += extra_frame_ancestors
-
+        print("~~~~~~NICKCICK")
         csp_policy = f"frame-ancestors {' '.join(csp_frame_ancestors)};"
         response["Content-Security-Policy"] = csp_policy
         return response
