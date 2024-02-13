@@ -2,7 +2,8 @@ from typing import Type
 
 from django.contrib import messages
 from django.core.exceptions import ImproperlyConfigured
-from django.shortcuts import redirect
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 from django.views.generic import TemplateView
 
 
@@ -44,7 +45,15 @@ class Experiment1(ExperimentView):
 class SuccessMessageExperimentView(ExperimentView):
     def post(self, request, *args, **kwargs):
         messages.success(self.request, "Great Job! You pressed a button.")
-        return redirect(self.path_name())
+
+        path = reverse(self.path_name())
+
+        # Pass along ?embed value, if provided
+        query_string = request.META["QUERY_STRING"]
+        if query_string:
+            path += "?" + query_string
+
+        return HttpResponseRedirect(path)
 
 
 class Experiment2a(SuccessMessageExperimentView):
